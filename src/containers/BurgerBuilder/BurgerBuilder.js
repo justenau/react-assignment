@@ -7,6 +7,7 @@ import axios from '../../axios.orders';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 
+
 const INGREDIENT_PRICES = {
     salad: 0.5,
     cheese: 0.4,
@@ -86,29 +87,12 @@ class BurgerBuilder extends Component{
 
     purchaseContinueHandler = () => {
         // alert("You continue");
-        this.setState({loading:true});
-        const order = {
-            ingredients: this.state.ingredients,
-            price: this.state.totalPrice,
-            customer: {
-                name: 'Juste',
-                address: {
-                    street: "teststreet",
-                    zipCode: '15645',
-                    country: 'Lithuania'
-                },
-                email: 'test@test.com'
-            },
-            deliveryMethod: 'fastest'
-        }
-        axios.post('/orders.json',order)
-            .then(response=>{
-                this.setState({loading:false, purchasing:false});
-            })
-            .catch(error => {
-                this.setState({loading:false,purchasing:false});
-            });
 
+        this.props.history.push({
+            pathname:'/checkout',
+            search:"?" + new URLSearchParams({
+                ...this.state.ingredients,price:this.state.totalPrice}).toString()}
+            );
     }
 
     render(){
