@@ -1,20 +1,20 @@
-import React, {Fragment, Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import classes from './Modal.module.css';
 import Backdrop from '../Backdrop/Backdrop';
 
-class Modal extends Component{
+class Modal extends Component {
 
     shouldComponentUpdate(nextProps, nextState) {
         return nextProps.show !== this.props.show || nextProps.children !== this.props.children;
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <Fragment>
-                <Backdrop 
+                <Backdrop
                     show={this.props.show}
                     clicked={this.props.modalClosed}/>
-                <div 
+                <div
                     className={classes.Modal}
                     style={{
                         transform: this.props.show ? 'translateY(0)' : 'translateY(-100vh)',
@@ -23,7 +23,8 @@ class Modal extends Component{
                     {this.props.children}
                 </div>
             </Fragment>
-        )}
+        )
+    }
 }
 
 export default Modal;
