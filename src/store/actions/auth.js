@@ -5,7 +5,7 @@ export const authStart = () => {
     return {
         type: AUTH_START,
     }
-}
+};
 
 export const authSuccess = (idToken, userId) => {
     return {
@@ -13,21 +13,21 @@ export const authSuccess = (idToken, userId) => {
         idToken: idToken,
         userId: userId,
     }
-}
+};
 
 export const authFail = (error) => {
     return {
         type: AUTH_FAIL,
         error: error,
     }
-}
+};
 export const checkAuthTimeout = (expirationTime) => {
     return dispatch => {
         setTimeout(() => {
             dispatch(logout());
         }, expirationTime * 1000);
     }
-}
+};
 
 export const logout = () => {
     localStorage.removeItem('token');
@@ -36,7 +36,7 @@ export const logout = () => {
     return {
         type: AUTH_LOGOUT
     }
-}
+};
 export const auth = (email, password, isSignUp) => {
     return dispatch => {
         dispatch(authStart());
@@ -44,7 +44,7 @@ export const auth = (email, password, isSignUp) => {
             email: email,
             password: password,
             returnSecureToken: true,
-        }
+        };
         let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAu25HbHsIVdRVEeId7s4nX9GByO4RFZso';
         if (!isSignUp) {
             url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAu25HbHsIVdRVEeId7s4nX9GByO4RFZso';
@@ -63,7 +63,7 @@ export const auth = (email, password, isSignUp) => {
             })
     }
 
-}
+};
 
 export const setAuthRedirectPath = (path) => {
     return {
@@ -71,7 +71,7 @@ export const setAuthRedirectPath = (path) => {
         path: path
 
     }
-}
+};
 
 export const authCheckState = () => {
     return dispatch => {
@@ -89,4 +89,4 @@ export const authCheckState = () => {
             }
         }
     }
-}
+};

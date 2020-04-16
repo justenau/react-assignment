@@ -18,6 +18,6 @@ const mapDispatchToProps = dispatch => {
     return {
         onLogout: () => dispatch(logout())
     }
-}
+};
 
 export default connect(null, mapDispatchToProps)(Logout)
